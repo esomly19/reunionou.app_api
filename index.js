@@ -50,7 +50,7 @@ app.get('/', function (req, res) {
 
 
 
-/*app.get('/user', function (req, res) {
+app.get('/user', function (req, res) {
 
 
     // connect to mysql
@@ -71,7 +71,7 @@ app.get('/', function (req, res) {
 
 
 
-});*/
+});
 
 app.get('/profiluser/:id', function (req, res) {
 
@@ -604,7 +604,7 @@ app.get("/users", function (req, res) {
     let endIndex = page * size
 
 
-    $query = `SELECT * FROM public."user" ORDER BY id ASC `;
+    $query = 'SELECT * FROM public."user" ORDER BY id ASC ';
 
     client.query($query, (err, result) => {
 
