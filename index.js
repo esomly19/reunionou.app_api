@@ -604,7 +604,7 @@ app.get("/users", function (req, res) {
     let endIndex = page * size
 
 
-    $query = `SELECT * from user  ORDER BY id ASC `;
+    $query = `SELECT * FROM public."user" ORDER BY id ASC `;
 
     client.query($query, (err, result) => {
 
@@ -614,7 +614,7 @@ app.get("/users", function (req, res) {
         } else {
             let userList = [];
             let user = {};
-            result.forEach(lm => {
+            result.rows[0].forEach(lm => {
                 user = {
                     id: lm.id,
                     email: lm.email,
