@@ -622,7 +622,7 @@ app.get("/users", function (req, res) {
         } else {
             let userList = [];
             let user = {};
-            result.rows.forEach(lm => {
+            result.forEach(lm => {
                 user = {
                     id: lm.id,
                     email: lm.email,
