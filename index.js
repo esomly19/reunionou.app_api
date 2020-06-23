@@ -615,52 +615,53 @@ app.get("/users", function (req, res) {
     $query = 'SELECT * FROM public."user" ORDER BY id ASC ';
 
     client.query($query, (err, result) => {
-
-        if (err) {
-            console.error(err);
-            res.status(404).send(err);
-        } else {
-            let userList = [];
-            let user = {};
-            result.forEach(lm => {
-                user = {
-                    id: lm.id,
-                    email: lm.email,
-                    nom: lm.nom,
-                    prenom: lm.prenom
+        res.json(result);
+        /*
+                if (err) {
+                    console.error(err);
+                    res.status(404).send(err);
+                } else {
+                    let userList = [];
+                    let user = {};
+                    result.rows.forEach(lm => {
+                        user = {
+                            id: lm.id,
+                            email: lm.email,
+                            nom: lm.nom,
+                            prenom: lm.prenom
+                        }
+                        user.links = {
+                            self: { href: `${SERVER} users / ${lm.id} ` },
+                        }
+                        userList.push(user);
+                        user = {};
+                        count++;
+                    });
+                    let nbpage = Math.ceil(count / size)
+                    if (page > nbpage) {
+                        page = nbpage
+                        startIndex = (page - 1) * size
+                        endIndex = page * size
+                    }
+                    let data = {};
+                    data.type = "collection";
+                    data.count = count;
+        
+                    data.nbpage = nbpage;
+                    if (startIndex > 0) {
+                        let previous = SERVER + "users?page=" + parseInt(parseInt(page) - 1) + "&size=" + size;
+                        data.previous = previous;
+                    }
+        
+                    if (endIndex < count) {
+                        let next = SERVER + "users?page=" + parseInt(parseInt(page) + 1) + "&size=" + size;
+                        data.next = next;
+                    }
+                    data.users = userList.slice(startIndex, endIndex);
+                    res.json(data);
+        
                 }
-                user.links = {
-                    self: { href: `${SERVER} users / ${lm.id} ` },
-                }
-                userList.push(user);
-                user = {};
-                count++;
-            });
-            let nbpage = Math.ceil(count / size)
-            if (page > nbpage) {
-                page = nbpage
-                startIndex = (page - 1) * size
-                endIndex = page * size
-            }
-            let data = {};
-            data.type = "collection";
-            data.count = count;
-
-            data.nbpage = nbpage;
-            if (startIndex > 0) {
-                let previous = SERVER + "users?page=" + parseInt(parseInt(page) - 1) + "&size=" + size;
-                data.previous = previous;
-            }
-
-            if (endIndex < count) {
-                let next = SERVER + "users?page=" + parseInt(parseInt(page) + 1) + "&size=" + size;
-                data.next = next;
-            }
-            data.users = userList.slice(startIndex, endIndex);
-            res.json(data);
-
-        }
-
+        */
 
     })
 
