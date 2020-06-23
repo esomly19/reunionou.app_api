@@ -37,11 +37,14 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors())
 
-app.use(function (req, res, next) {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
-    return next();
-});
-app.use(express.static(__dirname + '/'));
+const csp = require('helmet-csp')
+
+app.use(csp({
+    directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
+    }
+}))
 app.listen(process.env.PORT, '0.0.0.0')
 console.log(`API Running on http://${HOST}:${PORT}`)
 
