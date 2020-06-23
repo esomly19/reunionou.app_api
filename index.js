@@ -56,7 +56,7 @@ app.get('/user', function (req, res) {
     // connect to mysql
 
 
-    $query = 'SELECT * from user';
+    $query = 'SELECT * FROM public."user" ORDER BY id ASC ';
 
     client.query($query, function (err, rows, fields) {
         if (err) {
