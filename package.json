@@ -7,7 +7,6 @@
     "node": "12.14.1"
   },
   "scripts": {
-    "postinstall": "npm run build",
     "start": "node index.js",
     "heroku-prebuild": "npm install --dev",
     "dev": "nodemon index.js"
