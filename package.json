@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "api ",
   "main": "index.js",
+  "engines": {
+    "node": "12.14.1"
+  },
   "scripts": {
     "postinstall": "npm run build",
     "start": "node index.js",
