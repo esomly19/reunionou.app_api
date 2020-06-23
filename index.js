@@ -29,12 +29,12 @@ client.connect(function (err, client, done) {
 const PORT = process.env.PORT || 5000;
 const HOST = "localhost";
 const SERVER = "https:/warm-badlands-86536.herokuapp.com/"
+app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({
-        extended: true
+        extended: true,
     })
 )
-app.use(bodyParser.json());
 app.use(cors())
 
 const csp = require('helmet-csp')
@@ -657,7 +657,7 @@ app.get("/users", function (req, res) {
                 data.next = next;
             }
             data.users = userList.slice(startIndex, endIndex);
-            res.json(data);
+            res.send(data);
 
         }
 
