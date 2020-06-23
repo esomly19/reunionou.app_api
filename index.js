@@ -41,9 +41,10 @@ const csp = require('helmet-csp')
 
 app.use(csp({
     directives: {
-        defaultSrc: ["'self'"],
-        styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
-    }
+        defaultSrc: [`'self'`],
+        imgSrc: [`'self'`, `imgur.com`]
+    },
+    reportOnly: true
 }))
 app.listen(process.env.PORT, '0.0.0.0')
 console.log(`API Running on http://${HOST}:${PORT}`)
