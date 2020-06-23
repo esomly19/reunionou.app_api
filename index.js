@@ -7,7 +7,7 @@ const app = express()
 
 
 // Constants
-
+const PORT = 5000;
 const HOST = "https://warm-badlands-86536.herokuapp.com/";
 const SERVER = "https://warm-badlands-86536.herokuapp.com//"
 
