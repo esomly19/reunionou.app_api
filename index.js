@@ -64,7 +64,7 @@ app.get('/user', function (req, res) {
             res.send(err);
             return;
         }
-        res.send(rows.rows);
+        res.send(rows.rows[0]);
         console.log("Query succesfully executed: ", rows);
     });
 
