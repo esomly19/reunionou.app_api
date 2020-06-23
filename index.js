@@ -614,7 +614,7 @@ app.get("/users", function (req, res) {
         } else {
             let userList = [];
             let user = {};
-            result.rows[0].forEach(lm => {
+            result.rows.forEach(lm => {
                 user = {
                     id: lm.id,
                     email: lm.email,
@@ -649,7 +649,7 @@ app.get("/users", function (req, res) {
                 data.next = next;
             }
             data.users = userList.slice(startIndex, endIndex);
-            res.status(200).send(data);
+            res.json(data);
 
         }
 
