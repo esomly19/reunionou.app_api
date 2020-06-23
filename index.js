@@ -42,7 +42,10 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors())
 
-
+app.use(function (req, res, next) {
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
+    return next();
+});
 
 app.get('/', function (req, res) {
     res.send('api de reunionou');
