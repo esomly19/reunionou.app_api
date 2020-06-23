@@ -963,5 +963,5 @@ function startConnection() {
     });
 }
 
-app.listen(PORT, HOST);
+app.listen(process.env.PORT, '0.0.0.0')
 console.log(`API Running on http://${HOST}:${PORT}`)
