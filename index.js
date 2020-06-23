@@ -36,8 +36,12 @@ app.use(
     })
 )
 app.use(cors())
-
-
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
+app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 app.listen(process.env.PORT, '0.0.0.0')
 console.log(`API Running on http://${HOST}:${PORT}`)
 
