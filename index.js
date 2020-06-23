@@ -954,7 +954,7 @@ app.get("/nbconnect", (req, res) => {
 
     });
 });
-
+/*
 let client = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -986,3 +986,4 @@ function startConnection() {
     });
 }
 
+*/
