@@ -58,7 +58,7 @@ app.get('/user', function (req, res) {
 
     $query = 'SELECT * from user';
 
-    db.query($query, function (err, rows, fields) {
+    client.query($query, function (err, rows, fields) {
         if (err) {
             console.log("An error ocurred performing the query.");
             res.send(err);
@@ -81,7 +81,7 @@ app.get('/profiluser/:id', function (req, res) {
 
     $query = `SELECT * from user WHERE id = "${ide}"`;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -116,7 +116,7 @@ app.get('/eventuser/:id', function (req, res) {
     $query = ` SELECT * FROM 
    event WHERE iduser = "${ide}"
    `;
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -171,7 +171,7 @@ app.post("/log", (req, res) => {
     console.log(date_ob);
     $query = `INSERT INTO logs( navigateur, plateform, date) VALUES('${log.navigateur}', '${log.plateform}', "${date_ob}")`;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -198,7 +198,7 @@ app.get("/logs", (req, res) => {
 
     $query = `SELECT * FROM  logs`;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -249,7 +249,7 @@ app.get("/log", (req, res) => {
 
     $query = `SELECT * FROM  logs`;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -327,7 +327,7 @@ app.get("/logevent", (req, res) => {
 
     $query = `SELECT * FROM  event`;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -397,7 +397,7 @@ app.post("/utilisateur", (req, res) => {
 
 
     let query = `SELECT * FROM user where 'email' = "${utilisateur.email}" `
-    db.query(query, (err, result) => {
+    client.query(query, (err, result) => {
         if (err) {
             console.error(err);
             res.status(404).send(err);
@@ -409,7 +409,7 @@ app.post("/utilisateur", (req, res) => {
                 const hash = bcrypt.hashSync(utilisateur.password, salt);
                 let query2 = `INSERT INTO user (email,nom,prenom,mdp) VALUES ('${utilisateur.email}','${utilisateur.nom}','${utilisateur.prenom}','${hash}')`;
 
-                db.query(query2, (err, result) => {
+                client.query(query2, (err, result) => {
                     if (err) {
                         console.error(err);
                         res.status(404).send(err);
@@ -433,7 +433,7 @@ app.post("/connect", (req, res) => {
 
     $query = `SELECT * FROM user WHERE email = "${utilisateur.email}"`;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -483,7 +483,7 @@ app.post("/event", (req, res) => {
         ('00' + date2.getUTCSeconds()).slice(-2);
     console.log(date2);
     let $query = `INSERT INTO event (titre,description,date,etat,x,y,adresse,ville,token,iduser) VALUES ('${event.titre}','${event.description}' ,'${date2}','${event.etat}','${event.x}','${event.y}','${event.adresse}','${event.ville}','${hash}','${event.iduser}')`;
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -504,7 +504,7 @@ app.get("/evenenments", (req, res) => {
 
 
     $query = `SELECT * FROM event`;
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -526,7 +526,7 @@ app.get("/events", (req, res) => {
 
 
     $query = `SELECT * FROM event WHERE etat =1`;
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -547,7 +547,7 @@ app.get("/event/:token", (req, res) => {
     let tooken = req.params.token;
 
     $query = `SELECT * FROM event WHERE token ="${tooken}"`;
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -571,7 +571,7 @@ app.get("/user/:id", function (req, res) {
 
     $query = `SELECT * from user WHERE id ="${id}" `;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -606,7 +606,7 @@ app.get("/users", function (req, res) {
 
     $query = `SELECT * from user  ORDER BY id ASC `;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -679,7 +679,7 @@ app.get("/eventadmin", function (req, res) {
 
     $query = `SELECT * from event  ORDER BY id ASC `;
 
-    db.query($query, (err, result) => {
+    client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -746,7 +746,7 @@ app.get("/participants/:token", function (req, res) {
 
     $query2 = `SELECT id from event WHERE token = "${token}" `;
 
-    db.query($query2, (err, result) => {
+    client.query($query2, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -756,7 +756,7 @@ app.get("/participants/:token", function (req, res) {
             console.log(result[0].id);
             $query = `SELECT * from participe WHERE idevent = "${idd}" `;
 
-            db.query($query, (err, result2) => {
+            client.query($query, (err, result2) => {
 
                 if (err) {
                     console.error(err);
@@ -781,7 +781,7 @@ app.post("/participe", (req, res) => {
     let id;
     $query2 = `SELECT id from event WHERE token = "${token}" `;
 
-    db.query($query2, (err, result) => {
+    client.query($query2, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -792,7 +792,7 @@ app.post("/participe", (req, res) => {
             let event = req.body;
 
             let $query = `INSERT INTO participe(idevent, nom) VALUES('${id}', '${event.nom}')`;
-            db.query($query, (err, result) => {
+            client.query($query, (err, result) => {
 
                 if (err) {
                     console.error(err);
@@ -819,7 +819,7 @@ app.get("/commentaires/:token", function (req, res) {
 
     $query2 = `SELECT id from event WHERE token = "${token}" `;
 
-    db.query($query2, (err, result) => {
+    client.query($query2, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -829,7 +829,7 @@ app.get("/commentaires/:token", function (req, res) {
             console.log(result[0].id);
             $query = `SELECT * from commentaires WHERE idevent = "${idd}" `;
 
-            db.query($query, (err, result2) => {
+            client.query($query, (err, result2) => {
 
                 if (err) {
                     console.error(err);
@@ -853,7 +853,7 @@ app.post("/comment", (req, res) => {
     let id;
     $query2 = `SELECT id from event WHERE token = "${token}" `;
 
-    db.query($query2, (err, result) => {
+    client.query($query2, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -864,7 +864,7 @@ app.post("/comment", (req, res) => {
             let event = req.body;
 
             let $query = `INSERT INTO commentaires(idevent, nom, commentaire) VALUES('${id}', '${event.nom}', '${event.commentaire}')`;
-            db.query($query, (err, result) => {
+            client.query($query, (err, result) => {
 
                 if (err) {
                     console.error(err);
@@ -904,7 +904,7 @@ app.put('/event/:id', (req, res) => {
     //(titre,description,date,etat,x,y,adresse,token,iduser) VALUES ('${event.titre}','${event.description}' ,'${date2}','${event.etat}','${event.x}','${event.y}','${event.adresse}','${hash}','${event.iduser}')`
     let query = `UPDATE event SET titre = "${event.titre}", description= '${event.description}', date = "${date2}",etat = "${event.etat}", x= '${event.x}', y = "${event.y}" , adresse = "${event.adresse}"WHERE id= "${id}" `;
 
-    db.query(query, (err, result) => {
+    client.query(query, (err, result) => {
         if (err) {
             console.error(err);
             res.status(404).send(err);
@@ -925,7 +925,7 @@ app.get("/nbconnect", (req, res) => {
     let id;
     $query2 = `SELECT id from event WHERE token = "${token}" `;
 
-    db.query($query2, (err, result) => {
+    client.query($query2, (err, result) => {
 
         if (err) {
             console.error(err);
@@ -936,7 +936,7 @@ app.get("/nbconnect", (req, res) => {
             let event = req.body;
 
             let $query = `INSERT INTO commentaires(idevent, nom, commentaire) VALUES('${id}', '${event.nom}', '${event.commentaire}')`;
-            db.query($query, (err, result) => {
+            client.query($query, (err, result) => {
 
                 if (err) {
                     console.error(err);
@@ -955,7 +955,7 @@ app.get("/nbconnect", (req, res) => {
     });
 });
 
-let db = mysql.createConnection({
+let client = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -965,14 +965,14 @@ let db = mysql.createConnection({
 
 function startConnection() {
     console.error('CONNECTING');
-    db = mysql.createConnection({
+    client = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: '',
         database: 'reunionou'
     });
-    console.log(db)
-    db.connect(function (err) {
+    console.log(client)
+    client.connect(function (err) {
         if (err) {
             console.error('CONNECT FAILED', err.code);
             startConnection();
@@ -980,7 +980,7 @@ function startConnection() {
         else
             console.error('CONNECTED');
     });
-    db.on('error', function (err) {
+    client.on('error', function (err) {
         if (err.fatal)
             startConnection();
     });
