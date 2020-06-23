@@ -4,12 +4,35 @@ const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
+const { Client } = require('pg')
 
+const client = new Client({
+    user: 'vozmnqeyxyofyr',
+    host: 'ec2-50-17-90-177.compute-1.amazonaws.com',
+    database: 'd3n7s81pra83vo',
+    password: '58f72cb5058d56a3b510ad409adec2cbb288d11d303c7e584a0c0cb6403dea66',
+    port: 5432,
+    ssl: {
+        rejectUnauthorized: false
+    }
+})
+
+client.connect(function (err, client, done) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Connected!");
+    }
+})
 
 // Constants
 const PORT = process.env.PORT || 5000;
 const HOST = "localhost";
 const SERVER = "https:/warm-badlands-86536.herokuapp.com/"
+
+app.listen(process.env.PORT, '0.0.0.0')
+console.log(`API Running on http://${HOST}:${PORT}`)
+
 
 app.use(
     bodyParser.urlencoded({
@@ -963,5 +986,3 @@ function startConnection() {
     });
 }
 
-app.listen(process.env.PORT, '0.0.0.0')
-console.log(`API Running on http://${HOST}:${PORT}`)
