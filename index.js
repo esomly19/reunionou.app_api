@@ -50,7 +50,7 @@ app.get('/', function (req, res) {
 
 
 
-app.get('/user', function (req, res) {
+/*app.get('/user', function (req, res) {
 
 
     // connect to mysql
@@ -71,7 +71,7 @@ app.get('/user', function (req, res) {
 
 
 
-});
+});*/
 
 app.get('/profiluser/:id', function (req, res) {
 
