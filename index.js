@@ -29,11 +29,6 @@ client.connect(function (err, client, done) {
 const PORT = process.env.PORT || 5000;
 const HOST = "localhost";
 const SERVER = "https:/warm-badlands-86536.herokuapp.com/"
-
-app.listen(process.env.PORT, '0.0.0.0')
-console.log(`API Running on http://${HOST}:${PORT}`)
-
-
 app.use(
     bodyParser.urlencoded({
         extended: true
@@ -46,6 +41,12 @@ app.use(function (req, res, next) {
     res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
     return next();
 });
+app.use(express.static(__dirname + '/'));
+app.listen(process.env.PORT, '0.0.0.0')
+console.log(`API Running on http://${HOST}:${PORT}`)
+
+
+
 
 app.get('/', function (req, res) {
     res.send('api de reunionou');
