@@ -7,9 +7,9 @@ const app = express()
 
 
 // Constants
-const PORT = 3000;
-const HOST = "0.0.0.0";
-const SERVER = "http://docketu.iutnc.univ-lorraine.fr:19502/"
+
+const HOST = "https://warm-badlands-86536.herokuapp.com/";
+const SERVER = "https://warm-badlands-86536.herokuapp.com//"
 
 app.use(
     bodyParser.urlencoded({
