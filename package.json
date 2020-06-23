@@ -9,6 +9,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "start": "node index.js",
+    "heroku-prebuild": "npm install --dev",
     "build": "./node_modules/.bin/webpack --config webpack.conf.js",
     "dev": "nodemon index.js"
   },
