@@ -65,7 +65,7 @@ app.get('/user', function (req, res) {
             return;
         }
         res.send(rows);
-        console.log("Query succesfully executed: ", rows);
+        console.log("Query succesfully executed: ", rows.rows);
     });
 
 
