@@ -393,12 +393,13 @@ app.get("/logevent", (req, res) => {
 //s'inscrire
 app.post("/utilisateur", (req, res) => {
 
-    //let utilisateur = JSON.stringify(req.body);
-    /* console.log(req.body);
+    /* let utilisateur = JSON.stringify(req.body);
+     console.log(req.body);
      let utilisateur = req.body;*/
 
 
-    let query = 'SELECT * FROM public."user" where "EMAIL" = "${utilisateur.email}" '
+    // let query = 'SELECT * FROM public."user" where "EMAIL" = "${utilisateur.email}" '
+    let query = 'SELECT * FROM public."user"  '
     client.query(query, (err, result) => {
         if (err) {
             console.error(err);
