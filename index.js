@@ -80,7 +80,7 @@ app.get('/profiluser/:id', function (req, res) {
 
     // connect to mysql
     let ide = req.params.id;
-
+    console.log("id " + req.params.id);
     $query = `SELECT * from public."user" WHERE id = '${ide}'`;
     console.log($query);
     client.query($query, (err, result) => {
