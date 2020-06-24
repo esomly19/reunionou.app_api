@@ -412,8 +412,8 @@ app.post("/utilisateur", (req, res) => {
             } else {
                 res.json(result);
                 const salt = bcrypt.genSaltSync(4);
-                const hash = bcrypt.hashSync(utilisateur.password, salt);
-                let query2 = `INSERT INTO public."user" (email,nom,prenom,mdp) VALUES ('${utilisateur.email}','${utilisateur.nom}','${utilisateur.prenom}','${hash}')`;
+                const hash = bcrypt.hashSync(objUtilisateur.password, salt);
+                let query2 = `INSERT INTO public."user" (email,nom,prenom,mdp) VALUES ('${objUtilisateur.email}','${objUtilisateur.nom}','${objUtilisateur.prenom}','${hash}')`;
 
                 client.query(query2, (err, result) => {
                     if (err) {
