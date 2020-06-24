@@ -651,11 +651,9 @@ app.get("/users", function (req, res) {
                 data.next = next;
             }
             data.users = userList.slice(startIndex, endIndex);
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.setHeader('Access-Control-Allow-Methods', '*');
-            res.setHeader("Access-Control-Allow-Headers", "*");
+
             res.status(200).json(data);
-            res.end();
+
 
         }
 
