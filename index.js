@@ -409,7 +409,8 @@ app.post("/utilisateur", (req, res) => {
             res.status(404).send(err);
         } else {
             if (result.rows > 0) {
-                res.status(403).send("le compte existe déjà")
+                //res.status(403).send("le compte existe déjà")
+                res.json(result.rows);
             } else {
                 res.json(result.rows);
              /*   const salt = bcrypt.genSaltSync(4);
