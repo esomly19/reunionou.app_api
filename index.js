@@ -410,7 +410,7 @@ app.post("/utilisateur", (req, res) => {
                 res.status(403).send("le compte existe déjà")
 
             } else {
-                res.json(result);
+
                 const salt = bcrypt.genSaltSync(4);
                 const hash = bcrypt.hashSync(objUtilisateur.password, salt);
                 let query2 = `INSERT INTO public."user" (email,nom,prenom,mdp) VALUES ('${objUtilisateur.email}','${objUtilisateur.nom}','${objUtilisateur.prenom}','${hash}')`;
