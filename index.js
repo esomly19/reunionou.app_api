@@ -398,7 +398,7 @@ app.post("/utilisateur", (req, res) => {
     // let utilisateur = req.body;
 
 
-    let query = `SELECT * FROM public."user" WHERE  'EMAIL' = '${utilisateur.email}' `;
+    let query = `SELECT * FROM public."user" WHERE  'EMAIL' = "${utilisateur.email}" `;
     // let query = 'SELECT * FROM public."user"  '
     client.query(query, (err, result) => {
         if (err) {
@@ -408,7 +408,7 @@ app.post("/utilisateur", (req, res) => {
             if (result.rows > 0) {
                 res.status(403).send("le compte existe déjà")
             } else {
-                res.json(result);
+                res.json(result.rows);
              /*   const salt = bcrypt.genSaltSync(4);
                 const hash = bcrypt.hashSync(utilisateur.password, salt);
                 let query2 = `INSERT INTO public."user" ("EMAIL",nom,prenom,mdp) VALUES ('${utilisateur.email}','${utilisateur.nom}','${utilisateur.prenom}','${hash}')`;
