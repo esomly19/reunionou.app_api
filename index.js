@@ -1,5 +1,4 @@
 const express = require('express')
-const mysql = require("mysql")
 const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -29,19 +28,20 @@ client.connect(function (err, client, done) {
 const PORT = process.env.PORT || 5000;
 const HOST = "localhost";
 const SERVER = "https:/warm-badlands-86536.herokuapp.com/"
-app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({
-        extended: true,
+        extended: true
     })
 )
+
+app.use(bodyParser.json());
 app.use(cors())
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
 
-app.listen(process.env.PORT, '0.0.0.0')
-console.log(`API Running on http://${HOST}:${PORT}`)
+
 
 
 
@@ -958,36 +958,7 @@ app.get("/nbconnect", (req, res) => {
 
     });
 });
-/*
-let client = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'reunionou'
-});
 
 
-function startConnection() {
-    console.error('CONNECTING');
-    client = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'reunionou'
-    });
-    console.log(client)
-    client.connect(function (err) {
-        if (err) {
-            console.error('CONNECT FAILED', err.code);
-            startConnection();
-        }
-        else
-            console.error('CONNECTED');
-    });
-    client.on('error', function (err) {
-        if (err.fatal)
-            startConnection();
-    });
-}
-
-*/
+app.listen(process.env.PORT, '0.0.0.0')
+console.log(`API Running on http://${HOST}:${PORT}`)
