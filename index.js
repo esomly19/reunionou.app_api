@@ -401,8 +401,8 @@ app.post("/utilisateur", (req, res) => {
 
 
     let objUtilisateur = JSON.parse(utilisateur);
-    console.log("OBJ : " + req.body);
-    console.log("pre : " + req.body);
+    console.log("OBJ : " + req.body.nom);
+    console.log("pre : " + req.body.prenom);
 
     let query = `SELECT * FROM public."user"  where email = '${objUtilisateur.email}' `;
 
