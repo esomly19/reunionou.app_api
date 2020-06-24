@@ -440,8 +440,10 @@ app.post("/connect", (req, res) => {
 
     console.log(req.body);
     let utilisateur = req.body;
+    let objUtilisateur = JSON.parse(utilisateur);
 
-    $query = `SELECT * FROM public."user" WHERE email = "${utilisateur.email}"`;
+
+    $query = `SELECT * FROM public."user" WHERE email = '${objUtilisateur.email}'`;
 
     client.query($query, (err, result) => {
 
