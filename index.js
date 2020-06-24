@@ -559,7 +559,7 @@ app.get("/event/:token", (req, res) => {
 
     let tooken = req.params.token;
 
-    $query = `SELECT * FROM public."event" WHERE token ="${tooken}"`;
+    $query = `SELECT * FROM public."event" WHERE token ='${tooken}'`;
     client.query($query, (err, result) => {
 
         if (err) {
@@ -582,7 +582,7 @@ app.get("/user/:id", function (req, res) {
 
     let id = req.params.id;
 
-    $query = `SELECT * from public."user" WHERE id ="${id}" `;
+    $query = `SELECT * from public."user" WHERE id ='${id}' `;
 
     client.query($query, (err, result) => {
 
@@ -759,7 +759,7 @@ app.get("/participants/:token", function (req, res) {
 
     let token = req.params.token;
 
-    $query2 = `SELECT id from public."event" WHERE token = "${token}" `;
+    $query2 = `SELECT id from public."event" WHERE token = '${token}' `;
 
     client.query($query2, (err, result) => {
 
@@ -769,7 +769,7 @@ app.get("/participants/:token", function (req, res) {
         } else {
             let idd = result.rows[0].id;
             console.log(result.rows[0].id);
-            $query = `SELECT * from participe WHERE idevent = "${idd}" `;
+            $query = `SELECT * from participe WHERE idevent = '${idd}' `;
 
             client.query($query, (err, result2) => {
 
@@ -794,7 +794,7 @@ app.post("/participe", (req, res) => {
     let token = req.body.token;
     console.log("token " + token);
     let id;
-    $query2 = `SELECT id from public."event" WHERE token = "${token}" `;
+    $query2 = `SELECT id from public."event" WHERE token = '${token}' `;
 
     client.query($query2, (err, result) => {
 
@@ -832,7 +832,7 @@ app.get("/commentaires/:token", function (req, res) {
 
     let token = req.params.token;
 
-    $query2 = `SELECT id from public."event" WHERE token = "${token}" `;
+    $query2 = `SELECT id from public."event" WHERE token = '${token}' `;
 
     client.query($query2, (err, result) => {
 
@@ -842,7 +842,7 @@ app.get("/commentaires/:token", function (req, res) {
         } else {
             let idd = result.rows[0].id;
             console.log(result.rows[0].id);
-            $query = `SELECT * from public."commentaires" WHERE idevent = "${idd}" `;
+            $query = `SELECT * from public."commentaires" WHERE idevent = '${idd}' `;
 
             client.query($query, (err, result2) => {
 
@@ -866,7 +866,7 @@ app.post("/comment", (req, res) => {
     let token = req.body.token;
     console.log("token " + token);
     let id;
-    $query2 = `SELECT id from public."event" WHERE token = "${token}" `;
+    $query2 = `SELECT id from public."event" WHERE token = '${token}' `;
 
     client.query($query2, (err, result) => {
 
@@ -938,7 +938,7 @@ app.get("/nbconnect", (req, res) => {
     let token = req.body.token;
     console.log("token " + token);
     let id;
-    $query2 = `SELECT id from public."event" WHERE token = "${token}" `;
+    $query2 = `SELECT id from public."event" WHERE token = '${token}' `;
 
     client.query($query2, (err, result) => {
 
