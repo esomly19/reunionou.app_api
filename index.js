@@ -196,6 +196,7 @@ app.post("/log", (req, res) => {
 app.get("/logs", (req, res) => {
     let firefox = 0;
     let Chrome = 0;
+    let autre = 0;
 
 
     $query = `SELECT * FROM  public."logs"`;
@@ -210,11 +211,13 @@ app.get("/logs", (req, res) => {
                 res.status(404).send("problème log");
             } else {
                 result.rows.forEach(lm => {
-                    console.log(lm.navigateur);
+                    console.log("Navigateur  lol " + lm.navigateur);
                     if (lm.navigateur === "Chrome") {
                         Chrome++;
-                    } else {
+                    } else if (lm.navigateur === "Firefox") {
                         firefox++;
+                    } else {
+                        autre++;
                     }
 
 
@@ -225,6 +228,7 @@ app.get("/logs", (req, res) => {
                 data.type = "collection";
                 data.chrome = Chrome;
                 data.firefox = firefox;
+                data.autre = autre;
                 res.status(200).send(data);
             }
         }
