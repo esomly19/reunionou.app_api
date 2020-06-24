@@ -398,7 +398,7 @@ app.post("/utilisateur", (req, res) => {
      let utilisateur = req.body;*/
 
 
-    let query = `SELECT * FROM public."user" where 'EMAIL' = "${utilisateur.email}" `
+    let query = 'SELECT * FROM public."user" where "EMAIL" = "${utilisateur.email}" '
     client.query(query, (err, result) => {
         if (err) {
             console.error(err);
