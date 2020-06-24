@@ -6,7 +6,7 @@ const app = express()
 const { Client } = require('pg')
 
 const client = new Client({
-    user: 'vozmnqeyxyofyr',
+    user: 'jnepbfgzqcwcvn',
     host: 'ec2-52-22-216-69.compute-1.amazonaws.com',
     database: 'd60o9nrd1mmq51',
     password: '78c31a017d11456fc5707aadba218690694792157eeb5f2fe3e18c8fe9c263c4',
