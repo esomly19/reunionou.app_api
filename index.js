@@ -171,7 +171,7 @@ app.post("/log", (req, res) => {
     let log = req.body;
     let date_ob = new Date();
     console.log(date_ob);
-    $query = `INSERT INTO public."logs"( navigateur, plateform, date) VALUES('${log.navigateur}', '${log.plateform}', "${date_ob}")`;
+    $query = `INSERT INTO public."logs"( navigateur, plateform, date) VALUES('${log.navigateur}', '${log.plateform}', '${date_ob}')`;
 
     client.query($query, (err, result) => {
 
