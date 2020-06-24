@@ -209,7 +209,7 @@ app.get("/logs", (req, res) => {
             if (result >= 0) {
                 res.status(404).send("problème log");
             } else {
-                result.forEach(lm => {
+                result.rows.forEach(lm => {
                     console.log(lm.navigateur);
                     if (lm.navigateur === "Chrome") {
                         Chrome++;
