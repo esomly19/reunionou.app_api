@@ -560,15 +560,15 @@ app.get("/event/:token", (req, res) => {
     let tooken = req.params.token;
 
     $query = `SELECT * FROM public."event" WHERE token ='${tooken}'`;
-    console.log($query);
+
     client.query($query, (err, result) => {
 
         if (err) {
             console.error(err);
             res.status(404).send(err);
         } else {
-            console.log("RESULT   " + result);
-            res.status(200).json(result.rows);
+
+            res.status(200).json(result.rows[0]);
 
         }
 
