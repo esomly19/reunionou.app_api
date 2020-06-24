@@ -82,7 +82,7 @@ app.get('/profiluser/:id', function (req, res) {
     let ide = req.params.id;
 
     $query = `SELECT * from public."user" WHERE id = '${ide}'`;
-
+    console.log($query);
     client.query($query, (err, result) => {
 
         if (err) {
