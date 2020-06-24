@@ -90,9 +90,9 @@ app.get('/profiluser/:id', function (req, res) {
             res.status(404).send(err);
         } else {
             let user = {
-                nom: result[0].nom,
-                prenom: result[0].prenom,
-                email: result[0].email
+                nom: result.rows[0].nom,
+                prenom: result.rows[0].prenom,
+                email: result.rows[0].email
             };
             let data = {};
             data.type = "collection";
@@ -124,11 +124,11 @@ app.get('/eventuser/:id', function (req, res) {
             console.error(err);
             res.status(404).send(err);
         } else {
-            console.log(result);
+            console.log(result.rows);
             let eventList = [];
 
             let event = {};
-            result.forEach(lm => {
+            result.rows.forEach(lm => {
                 event = {
 
                     id: lm.id,
@@ -179,7 +179,7 @@ app.post("/log", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            if (result >= 0) {
+            if (result.rows >= 0) {
                 res.status(404).send("problème log");
             } else {
 
@@ -206,7 +206,7 @@ app.get("/logs", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            if (result >= 0) {
+            if (result.rows >= 0) {
                 res.status(404).send("problème log");
             } else {
                 result.rows.forEach(lm => {
@@ -257,10 +257,10 @@ app.get("/log", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            if (result >= 0) {
+            if (result.rows >= 0) {
                 res.status(404).send("problème log");
             } else {
-                result.forEach(lm => {
+                result.rows.forEach(lm => {
 
                     console.log("Date " + lm.date);
                     let ll = new Date(lm.date);
@@ -335,10 +335,10 @@ app.get("/logevent", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            if (result >= 0) {
+            if (result.rows >= 0) {
                 res.status(404).send("problème log");
             } else {
-                result.forEach(lm => {
+                result.rows.forEach(lm => {
 
                     console.log("Date " + lm.date);
                     let ll = new Date(lm.date);
@@ -404,7 +404,7 @@ app.post("/utilisateur", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            if (result > 0) {
+            if (result.rows > 0) {
                 res.status(403).send("le compte existe déjà")
             } else {
                 const salt = bcrypt.genSaltSync(4);
@@ -441,16 +441,16 @@ app.post("/connect", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            if (result >= 0) {
+            if (result.rows >= 0) {
                 res.status(404).send("email ou mot de passe invalide");
             } else {
 
 
-                if (!bcrypt.compareSync(utilisateur.password, result[0].mdp)) {
+                if (!bcrypt.compareSync(utilisateur.password, result.rows[0].mdp)) {
                     res.status(404).send("email ou mot de passe invalide");
                 } else {
 
-                    let e = JSON.stringify(result[0].id);
+                    let e = JSON.stringify(result.rows[0].id);
                     console.log(e);
                     res.status(200).send(e);
 
@@ -513,7 +513,7 @@ app.get("/evenenments", (req, res) => {
             res.status(404).send(err);
         } else {
 
-            res.status(200).send(result);
+            res.status(200).send(result.rows);
 
         }
 
@@ -535,7 +535,7 @@ app.get("/events", (req, res) => {
             res.status(404).send(err);
         } else {
 
-            res.status(200).send(result);
+            res.status(200).send(result.rows);
 
         }
 
@@ -556,7 +556,7 @@ app.get("/event/:token", (req, res) => {
             res.status(404).send(err);
         } else {
 
-            res.status(200).send(result[0]);
+            res.status(200).send(result.rows[0]);
 
         }
 
@@ -580,7 +580,7 @@ app.get("/user/:id", function (req, res) {
             res.status(404).send(err);
         } else {
 
-            res.status(200).send(result[0]);
+            res.status(200).send(result.rows[0]);
 
         }
 
@@ -691,7 +691,7 @@ app.get("/eventadmin", function (req, res) {
         } else {
             let eventList = [];
             let event = {};
-            result.forEach(lm => {
+            result.rows.forEach(lm => {
                 event = {
                     id: lm.id,
                     titre: lm.titre,
@@ -756,8 +756,8 @@ app.get("/participants/:token", function (req, res) {
             console.error(err);
             res.status(404).send(err);
         } else {
-            let idd = result[0].id;
-            console.log(result[0].id);
+            let idd = result.rows[0].id;
+            console.log(result.rows[0].id);
             $query = `SELECT * from participe WHERE idevent = "${idd}" `;
 
             client.query($query, (err, result2) => {
@@ -791,8 +791,8 @@ app.post("/participe", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            console.log(result[0].id);
-            id = result[0].id;
+            console.log(result.rows[0].id);
+            id = result.rows[0].id;
             let event = req.body;
 
             let $query = `INSERT INTO participe(idevent, nom) VALUES('${id}', '${event.nom}')`;
@@ -829,8 +829,8 @@ app.get("/commentaires/:token", function (req, res) {
             console.error(err);
             res.status(404).send(err);
         } else {
-            let idd = result[0].id;
-            console.log(result[0].id);
+            let idd = result.rows[0].id;
+            console.log(result.rows[0].id);
             $query = `SELECT * from commentaires WHERE idevent = "${idd}" `;
 
             client.query($query, (err, result2) => {
@@ -863,8 +863,8 @@ app.post("/comment", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            console.log(result[0].id);
-            id = result[0].id;
+            console.log(result.rows[0].id);
+            id = result.rows[0].id;
             let event = req.body;
 
             let $query = `INSERT INTO commentaires(idevent, nom, commentaire) VALUES('${id}', '${event.nom}', '${event.commentaire}')`;
@@ -935,8 +935,8 @@ app.get("/nbconnect", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            console.log(result[0].id);
-            id = result[0].id;
+            console.log(result.rows[0].id);
+            id = result.rows[0].id;
             let event = req.body;
 
             let $query = `INSERT INTO commentaires(idevent, nom, commentaire) VALUES('${id}', '${event.nom}', '${event.commentaire}')`;
