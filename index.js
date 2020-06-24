@@ -398,7 +398,7 @@ app.post("/utilisateur", (req, res) => {
     // let utilisateur = req.body;
     let objUtilisateur = JSON.parse(utilisateur);
 
-    let query = `SELECT * FROM public."user"  where 'EMAIL' = '${objUtilisateur.email}' `;
+    let query = `SELECT * FROM public."user"  where email = '${objUtilisateur.email}' `;
 
     // let query = `SELECT * FROM public."user" WHERE  'EMAIL' = '${utilisateur.email}' `;
     //let query = 'SELECT * FROM public."user"  '
