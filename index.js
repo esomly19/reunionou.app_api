@@ -567,7 +567,7 @@ app.get("/event/:token", (req, res) => {
             res.status(404).send(err);
         } else {
 
-            res.status(200).send(result.rows[0]);
+            res.status(200).send(result.rows);
 
         }
 
