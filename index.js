@@ -81,7 +81,7 @@ app.get('/profiluser/:id', function (req, res) {
     // connect to mysql
     let ide = req.params.id;
 
-    $query = `SELECT * from public."user" WHERE id = "${ide}"`;
+    $query = `SELECT * from public."user" WHERE id = '${ide}'`;
 
     client.query($query, (err, result) => {
 
@@ -116,7 +116,7 @@ app.get('/eventuser/:id', function (req, res) {
 
 
     $query = ` SELECT * FROM 
-   public."event" WHERE iduser = "${ide}"
+   public."event" WHERE iduser = '${ide}'
    `;
     client.query($query, (err, result) => {
 
@@ -440,9 +440,8 @@ app.post("/connect", (req, res) => {
 
     console.log(req.body);
     let utilisateur = req.body;
-    // let objUtilisateur = JSON.parse(utilisateur);
 
-    console.log("OBJutilisateur  " + utilisateur);
+
     let query = `SELECT * FROM public."user"  where email = '${utilisateur.email}' `;
 
     client.query(query, (err, result) => {
