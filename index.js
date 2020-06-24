@@ -396,9 +396,11 @@ app.post("/utilisateur", (req, res) => {
     let utilisateur = JSON.stringify(req.body);
     console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH   " + req.body.email);
     // let utilisateur = req.body;
+    let objUtilisateur = JSON.parse(utilisateur);
 
+    let query = `SELECT * FROM public."user"  where 'EMAIL' = "${objUtilisateur.email}" `;
 
-    let query = `SELECT * FROM public."user" WHERE  'EMAIL' = '${utilisateur.email}' `;
+    // let query = `SELECT * FROM public."user" WHERE  'EMAIL' = '${utilisateur.email}' `;
     // let query = 'SELECT * FROM public."user"  '
     console.log("AooooooooooooooooooooooooooooooooooooooooooooAH    " + query);
     client.query(query, (err, result) => {
