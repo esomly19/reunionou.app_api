@@ -651,7 +651,7 @@ app.get("/users", function (req, res) {
                 data.next = next;
             }
             data.users = userList.slice(startIndex, endIndex);
-            res.json(data);
+            res.status(200).json(data);
 
         }
 
