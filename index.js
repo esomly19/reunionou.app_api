@@ -394,26 +394,24 @@ app.get("/logevent", (req, res) => {
 app.post("/utilisateur", (req, res) => {
 
     let utilisateur = JSON.stringify(req.body);
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH   " + req.body.email);
-    // let utilisateur = req.body;
+
+
     let objUtilisateur = JSON.parse(utilisateur);
 
     let query = `SELECT * FROM public."user"  where email = '${objUtilisateur.email}' `;
 
-    // let query = `SELECT * FROM public."user" WHERE  'EMAIL' = '${utilisateur.email}' `;
-    //let query = 'SELECT * FROM public."user"  '
-    console.log("AooooooooooooooooooooooooooooooooooooooooooooAH    " + query);
+
     client.query(query, (err, result) => {
         if (err) {
             console.error(err);
             res.status(404).send(err);
         } else {
             if (result.rows > 0) {
-                //res.status(403).send("le compte existe déjà")
-                res.json(result);
+                res.status(403).send("le compte existe déjà")
+
             } else {
                 res.json(result);
-             /*   const salt = bcrypt.genSaltSync(4);
+                const salt = bcrypt.genSaltSync(4);
                 const hash = bcrypt.hashSync(utilisateur.password, salt);
                 let query2 = `INSERT INTO public."user" ("EMAIL",nom,prenom,mdp) VALUES ('${utilisateur.email}','${utilisateur.nom}','${utilisateur.prenom}','${hash}')`;
 
@@ -425,7 +423,7 @@ app.post("/utilisateur", (req, res) => {
                         res.status(201).send("créer");
                     }
                 })
-           */ }
+            }
         }
     })
 
