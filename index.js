@@ -442,7 +442,7 @@ app.post("/connect", (req, res) => {
     let utilisateur = req.body;
     let objUtilisateur = JSON.parse(utilisateur);
 
-
+    console.log("OBJutilisateur  " + objUtilisateur);
     let query = `SELECT * FROM public."user"  where email = '${objUtilisateur.email}' `;
 
     client.query(query, (err, result) => {
