@@ -394,7 +394,7 @@ app.get("/logevent", (req, res) => {
 app.post("/utilisateur", (req, res) => {
 
     let utilisateur = JSON.stringify(req.body);
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH" + req.body);
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH" + req.body.email);
     // let utilisateur = req.body;
 
 
