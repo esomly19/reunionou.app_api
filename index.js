@@ -440,10 +440,10 @@ app.post("/connect", (req, res) => {
 
     console.log(req.body);
     let utilisateur = req.body;
-    let objUtilisateur = JSON.parse(utilisateur);
+    // let objUtilisateur = JSON.parse(utilisateur);
 
-    console.log("OBJutilisateur  " + objUtilisateur);
-    let query = `SELECT * FROM public."user"  where email = '${objUtilisateur.email}' `;
+    console.log("OBJutilisateur  " + utilisateur);
+    let query = `SELECT * FROM public."user"  where email = '${utilisateur.email}' `;
 
     client.query(query, (err, result) => {
 
@@ -456,7 +456,7 @@ app.post("/connect", (req, res) => {
             } else {
 
 
-                if (!bcrypt.compareSync(objUtilisateur.password, result.rows[0].mdp)) {
+                if (!bcrypt.compareSync(utilisateur.password, result.rows[0].mdp)) {
                     res.status(404).send("email ou mot de passe invalide");
                 } else {
 
