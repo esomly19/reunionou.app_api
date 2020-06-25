@@ -842,7 +842,7 @@ app.get("/commentaires/:token", function (req, res) {
             res.status(404).send(err);
         } else {
             let idd = result.rows[0].id;
-            console.log(result.rows[0].id);
+            console.log("IDDDDDDDDDD " + result.rows[0].id);
             $query = `SELECT * from public."commentaires" WHERE idevent = '${idd}' `;
 
             client.query($query, (err, result2) => {
