@@ -852,7 +852,7 @@ app.get("/commentaires/:token", function (req, res) {
                     res.status(404).send(err);
                 } else {
                     console.log(result2);
-                    res.status(200).send(result2);
+                    res.status(200).send(result2.rows);
 
                 }
 
