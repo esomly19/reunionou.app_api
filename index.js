@@ -467,7 +467,7 @@ app.post("/connect", (req, res) => {
                     let e = JSON.stringify(result.rows[0].id);
                     data.id = e;
                     console.log(e);
-                    res.status(200).send(data);
+                    res.status(200).send(result.rows[0]);
 
                 }
 
