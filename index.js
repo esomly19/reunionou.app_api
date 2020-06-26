@@ -461,8 +461,8 @@ app.post("/connect", (req, res) => {
                     res.status(404).send("email ou mot de passe invalide");
                 } else {
                     let data = {};
-                    data.nom = result.rows[0].nom;
-                    data.prenom = result.rows[0].prenom;
+                    data.nom = JSON.stringify(result.rows[0].nom);
+                    data.prenom = JSON.stringify(result.rows[0].prenom);
 
                     let e = JSON.stringify(result.rows[0].id);
                     data.id = e;
