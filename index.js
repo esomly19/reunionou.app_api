@@ -882,8 +882,8 @@ app.post("/comment", (req, res) => {
             console.log(result.rows[0].id);
             id = result.rows[0].id;
             let event = req.body;
-            var datetime = new Date();
-            let date2 = date2.getUTCFullYear() + '-' +
+            let date2 = new Date();
+            date2 = date2.getUTCFullYear() + '-' +
                 ('00' + (date2.getUTCMonth() + 1)).slice(-2) + '-' +
                 ('00' + date2.getUTCDate()).slice(-2) + ' ' +
                 ('00' + date2.getUTCHours()).slice(-2) + ':' +
