@@ -882,8 +882,14 @@ app.post("/comment", (req, res) => {
             console.log(result.rows[0].id);
             id = result.rows[0].id;
             let event = req.body;
-
-            let $query = `INSERT INTO public."commentaires"(idevent, nom, commentaire) VALUES('${id}', '${event.nom}', '${event.commentaire}')`;
+            var datetime = new Date();
+            date2 = date2.getUTCFullYear() + '-' +
+                ('00' + (date2.getUTCMonth() + 1)).slice(-2) + '-' +
+                ('00' + date2.getUTCDate()).slice(-2) + ' ' +
+                ('00' + date2.getUTCHours()).slice(-2) + ':' +
+                ('00' + date2.getUTCMinutes()).slice(-2) + ':' +
+                ('00' + date2.getUTCSeconds()).slice(-2);
+            let $query = `INSERT INTO public."commentaires"(idevent, nom, commentaire,date) VALUES('${id}', '${event.nom}', '${event.commentaire}','${date2}')`;
             client.query($query, (err, result) => {
 
                 if (err) {
