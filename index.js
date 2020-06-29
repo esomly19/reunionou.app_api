@@ -807,8 +807,8 @@ app.post("/participe", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            console.log(result.rows);
-            id = result.rows;
+            console.log(result.rows[0].id);
+            id = result.rows[0].id;
             let event = req.body;
 
             let $query = `INSERT INTO  public."participe"(idevent, nom) VALUES('${id}', '${event.nom}')`;
