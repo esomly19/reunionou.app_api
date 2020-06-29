@@ -540,9 +540,15 @@ app.get("/evenenments", (req, res) => {
 app.get("/events", (req, res) => {
 
     //let utilisateur = JSON.stringify(req.body);
+    let date2 = new Date();
+    date2 = date2.getUTCFullYear() + '-' +
+        ('00' + (date2.getUTCMonth() + 1)).slice(-2) + '-' +
+        ('00' + date2.getUTCDate()).slice(-2) + ' ' +
+        ('00' + date2.getUTCHours()).slice(-2) + ':' +
+        ('00' + date2.getUTCMinutes()).slice(-2) + ':' +
+        ('00' + date2.getUTCSeconds()).slice(-2);
 
-
-    $query = `SELECT * FROM public."event" WHERE etat =1`;
+    $query = `SELECT * FROM public."event" WHERE etat =0 AND  date > '${date2}'`;
     client.query($query, (err, result) => {
 
         if (err) {
