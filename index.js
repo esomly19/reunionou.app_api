@@ -538,8 +538,20 @@ app.get("/evenenments", (req, res) => {
 });
 
 app.get("/events", (req, res) => {
+    let page = 1
+    if (req.query.page != null && req.query.page > 0) {
+        page = req.query.page
+    }
+    let size = 10
+    if (req.query.size != null && req.query.size > 0) {
+        size = req.query.size
+    }
 
-    //let utilisateur = JSON.stringify(req.body);
+
+    let count = 0
+    let startIndex = (page - 1) * size
+    let endIndex = page * size
+
     let date2 = new Date();
     date2 = date2.getUTCFullYear() + '-' +
         ('00' + (date2.getUTCMonth() + 1)).slice(-2) + '-' +
@@ -556,8 +568,52 @@ app.get("/events", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
+            let eventList = [];
+            let event = {};
+            result.rows.forEach(lm => {
+                event = {
+                    id: lm.id,
+                    token: lm.token,
+                    titre: lm.titre,
+                    description: lm.description,
+                    date: lm.date,
+                    etat: lm.etat,
+                    x: lm.x,
+                    y: lm.y,
+                    adresse: lm.adresse,
+                    ville: lm.ville,
+                    iduser: lm.iduser,
+                }
+                event.links = {
+                    self: { href: `${SERVER} event / ${lm.id} ` },
+                }
+                eventList.push(event);
+                event = {};
+                count++;
+            });
+            let nbpage = Math.ceil(count / size)
+            if (page > nbpage) {
+                page = nbpage
+                startIndex = (page - 1) * size
+                endIndex = page * size
+            }
+            let data = {};
+            data.type = "collection";
+            data.count = count;
 
-            res.status(200).send(result.rows);
+            data.nbpage = nbpage;
+            if (startIndex > 0) {
+                let previous = SERVER + "events?page=" + parseInt(parseInt(page) - 1) + "&size=" + size;
+                data.previous = previous;
+            }
+
+            if (endIndex < count) {
+                let next = SERVER + "users?page=" + parseInt(parseInt(page) + 1) + "&size=" + size;
+                data.next = next;
+            }
+            data.events = eventList.slice(startIndex, endIndex);
+
+            res.status(200).json(data);
 
         }
 
