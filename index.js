@@ -656,27 +656,32 @@ app.get("/events/:name", (req, res) => {
         } else {
             let eventList = [];
             let event = {};
-            result.rows.forEach(lm => {
-                event = {
-                    id: lm.id,
-                    token: lm.token,
-                    titre: lm.titre,
-                    description: lm.description,
-                    date: lm.date,
-                    etat: lm.etat,
-                    x: lm.x,
-                    y: lm.y,
-                    adresse: lm.adresse,
-                    ville: lm.ville,
-                    iduser: lm.iduser,
-                }
-                event.links = {
-                    self: { href: `${SERVER} event / ${lm.id} ` },
-                }
-                eventList.push(event);
-                event = {};
-                count++;
-            });
+            if (result.rows) {
+                eventList.push("dada");
+            } else {
+                result.rows.forEach(lm => {
+                    event = {
+                        id: lm.id,
+                        token: lm.token,
+                        titre: lm.titre,
+                        description: lm.description,
+                        date: lm.date,
+                        etat: lm.etat,
+                        x: lm.x,
+                        y: lm.y,
+                        adresse: lm.adresse,
+                        ville: lm.ville,
+                        iduser: lm.iduser,
+                    }
+                    event.links = {
+                        self: { href: `${SERVER} event / ${lm.id} ` },
+                    }
+                    eventList.push(event);
+                    event = {};
+                    count++;
+
+                });
+            }
             let nbpage = Math.ceil(count / size)
             if (page > nbpage) {
                 page = nbpage
