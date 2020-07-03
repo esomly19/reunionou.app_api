@@ -656,7 +656,8 @@ app.get("/events/:name", (req, res) => {
         } else {
             let eventList = [];
             let event = {};
-            if (result.length > 0) {
+
+            if (result.rows.length > 0) {
                 result.rows.forEach(lm => {
                     event = {
                         id: lm.id,
