@@ -656,9 +656,7 @@ app.get("/events/:name", (req, res) => {
         } else {
             let eventList = [];
             let event = {};
-            if (result.rows.length < 0) {
-                eventList.push("dada");
-            } else {
+            if (result.length > 0) {
                 result.rows.forEach(lm => {
                     event = {
                         id: lm.id,
@@ -681,6 +679,8 @@ app.get("/events/:name", (req, res) => {
                     count++;
 
                 });
+            } else {
+                eventList.push("dada");
             }
             let nbpage = Math.ceil(count / size)
             if (page > nbpage) {
