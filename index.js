@@ -646,7 +646,7 @@ app.get("/events/:name", (req, res) => {
         ('00' + date2.getUTCMinutes()).slice(-2) + ':' +
         ('00' + date2.getUTCSeconds()).slice(-2);
     console.log(date2);
-    $query = `SELECT * FROM public."event" WHERE etat =0 AND  date > '${date2}' AND titre LIKE ‘%${name}%’  `;
+    $query = `SELECT * FROM public."event" WHERE etat =0 AND  date > '${date2}' AND titre LIKE %‘${name}’%  `;
     console.log($query);
     client.query($query, (err, result) => {
 
