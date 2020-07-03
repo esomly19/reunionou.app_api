@@ -656,7 +656,7 @@ app.get("/events/:name", (req, res) => {
         } else {
             let eventList = [];
             let event = {};
-            if (result.rows <= 0) {
+            if (result.rows.length < 0) {
                 eventList.push("dada");
             } else {
                 result.rows.forEach(lm => {
