@@ -179,12 +179,10 @@ app.post("/log", (req, res) => {
             console.error(err);
             res.status(404).send(err);
         } else {
-            if (result.rows >= 0) {
-                res.status(404).send("problème log");
-            } else {
 
-                res.status(200).send("log enregistré");
-            }
+
+            res.status(200).send("log enregistré");
+
         }
 
     });
