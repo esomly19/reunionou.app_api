@@ -1092,10 +1092,7 @@ app.put('/event/:id', (req, res) => {
             console.error(err);
             res.status(404).send(err);
         }
-        if (result.affectedRows == 0) {
-            console.log("La commande " + req.params.id + " est inexistante");
-            res.status(404).json({ "type": "error", "error": 404, "message": "Ressource non disponible : " + req._parsedUrl.pathname });
-        } else {
+        else {
             res.status(201).send(JSON.stringify({ message: "update reussi sur event n°" + id, serie: req.body }));
         }
     });
