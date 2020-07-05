@@ -1067,12 +1067,11 @@ app.post("/comment", (req, res) => {
 });
 
 app.put('/event/:id', (req, res) => {
-    res.type("application/json;charset=utf-8");
+
 
     let id = req.params.id;
     let event = req.body;
-    const salt = bcrypt.genSaltSync(4);
-    const hash = bcrypt.hashSync(event.titre + event.iduser, salt);
+
     console.log("Date " + event.date);
     let date2 = new Date(event.date);
     date2 = date2.getUTCFullYear() + '-' +
