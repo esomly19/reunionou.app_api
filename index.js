@@ -1073,6 +1073,10 @@ app.put('/event/:id', (req, res) => {
     let event = req.body;
 
     console.log("Date " + event.date);
+    console.log("iduser " + event.iduser);
+    console.log("etat " + event.etat);
+    console.log("x " + event.x);
+    console.log("y " + event.y);
     let date2 = new Date(event.date);
     date2 = date2.getUTCFullYear() + '-' +
         ('00' + (date2.getUTCMonth() + 1)).slice(-2) + '-' +
