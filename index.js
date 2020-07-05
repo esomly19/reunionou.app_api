@@ -1065,6 +1065,7 @@ app.post("/comment", (req, res) => {
 
     });
 });
+
 app.put('/event/:id', (req, res) => {
     res.type("application/json;charset=utf-8");
 
@@ -1085,7 +1086,7 @@ app.put('/event/:id', (req, res) => {
 
 
     //(titre,description,date,etat,x,y,adresse,token,iduser) VALUES ('${event.titre}','${event.description}' ,'${date2}','${event.etat}','${event.x}','${event.y}','${event.adresse}','${hash}','${event.iduser}')`
-    let query = `UPDATE public."event" SET titre = "${event.titre}", description= '${event.description}', date = "${date2}",etat = "${event.etat}", x= '${event.x}', y = "${event.y}" , adresse = "${event.adresse}"WHERE id= "${id}" `;
+    let query = `UPDATE public."event" SET titre = '${event.titre}', description= '${event.description}', date = '${date2}',etat = '${event.etat}', x= '${event.x}', y = '${event.y}' , adresse = '${event.adresse}' WHERE id= '${id}' `;
 
     client.query(query, (err, result) => {
         if (err) {
